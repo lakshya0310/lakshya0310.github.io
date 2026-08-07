@@ -1,10 +1,10 @@
-import Layout from "./components/ui/Layout";
-import Diary from "./components/diary/Diary";
+import Layout from "../components/ui/Layout";
+import DeskScene from "../components/scene/DeskScene";
 
 function App() {
   return (
     <Layout>
-      <Diary />
+      <DeskScene />
     </Layout>
   );
 }
