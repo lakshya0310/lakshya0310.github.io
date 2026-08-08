@@ -1,5 +1,10 @@
 @import "tailwindcss";
-
+@font-face {
+  font-family: "IM FELL English";
+  src: url("./assets/fonts/IMFellEnglish-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
 html,
 body,
 #root {

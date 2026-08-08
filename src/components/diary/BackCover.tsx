@@ -4,10 +4,9 @@ export default function BackCover() {
       className="
         absolute
         inset-0
-
         rounded-[6px]
-
-        bg-[#2a1d17]
+        bg-[#241711]
+        shadow-inner
       "
     />
   );

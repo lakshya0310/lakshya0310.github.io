@@ -14,16 +14,16 @@ export default function FrontCover({
   return (
     <motion.div
       onClick={() => {
-    if (!isOpen) {
-        onClick();
-    }
-}}
+        if (!isOpen) {
+          onClick();
+        }
+      }}
       animate={{
         rotateY: isOpen ? -178 : 0,
       }}
       transition={{
         duration: 1.5,
-        ease: [0.25,1,0.5,1],
+        ease: [0.25, 1, 0.5, 1],
       }}
       className="
         absolute
@@ -39,10 +39,19 @@ export default function FrontCover({
 
         transformOrigin: "left center",
         transformStyle: "preserve-3d",
-
         backfaceVisibility: "hidden",
       }}
     >
+      {/* Dark leather overlay */}
+      <div
+        className="
+          absolute
+          inset-0
+          bg-black/40
+          pointer-events-none
+        "
+      />
+
       {/* Leather highlight */}
       <div
         className="
@@ -52,6 +61,7 @@ export default function FrontCover({
           from-white/5
           via-transparent
           to-black/20
+          pointer-events-none
         "
       />
 

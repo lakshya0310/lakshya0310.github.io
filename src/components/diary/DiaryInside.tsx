@@ -15,18 +15,24 @@ export default function DiaryInside({
         opacity: isOpen ? 1 : 0,
       }}
       transition={{
-        delay: 0.4,
-        duration: 0.5,
+        delay: 0.45,
+        duration: 0.6,
       }}
       className="
-        absolute
-        inset-0
-        rounded-[6px]
-        overflow-hidden
-        bg-[#efe5c8]
-      "
+  absolute
+  inset-[12px]
+  rounded-[3px]
+  overflow-hidden
+  bg-[#e8dcc0]
+"
+style={{
+  boxShadow: `
+    inset 0 0 30px rgba(60, 40, 20, 0.25),
+    0 0 10px rgba(0, 0, 0, 0.15)
+  `,
+}}
     >
-      <DiaryPage />
+      <DiaryPage isOpen={isOpen} />
     </motion.div>
   );
 }
