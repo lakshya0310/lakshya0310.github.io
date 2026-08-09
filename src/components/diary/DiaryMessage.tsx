@@ -18,23 +18,27 @@ export default function DiaryMessage({
     <motion.div
       initial={{
         opacity: 0,
+        y: 8,
       }}
       animate={{
         opacity: isActive ? 1 : 0,
+        y: isActive ? 0 : 8,
       }}
       transition={{
         delay,
-        duration: 0.1,
+        duration: 0.4,
+        ease: "easeOut",
       }}
       className={`
-        mb-10
-        ${highlight ? "text-3xl" : ""}
+        mb-6
+        ${highlight ? "text-3xl tracking-wider" : ""}
       `}
     >
       <InkWriter
         text={text}
         isActive={isActive}
         startDelay={delay}
+        highlight={highlight}
       />
     </motion.div>
   );

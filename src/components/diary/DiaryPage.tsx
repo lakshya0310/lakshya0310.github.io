@@ -32,6 +32,9 @@ useEffect(() => {
   setTimeout(() => {
   setMessageIndex(4);
 }, 11500),
+setTimeout(() => {
+  setMessageIndex(5);
+}, 14500),
   ];
 
   return () => {
@@ -76,7 +79,7 @@ useEffect(() => {
     absolute
     inset-0
     px-16
-    pt-24
+    pt-16
     max-w-[650px]
   "
 >
@@ -112,6 +115,13 @@ useEffect(() => {
     isActive={true}
     delay={0}
     highlight
+  />
+)}
+{messageIndex >= 5 && (
+  <DiaryMessage
+    text="I know your name."
+    isActive={true}
+    delay={0}
   />
 )}
 </div>

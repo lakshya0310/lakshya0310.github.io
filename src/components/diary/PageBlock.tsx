@@ -12,7 +12,7 @@ export default function PageBlock() {
         rounded-[6px]
 
         bg-[#d9cfb4]
-
+        shadow-[inset_0_0_25px_rgba(90,70,40,0.18)]
         -z-10
       "
     />

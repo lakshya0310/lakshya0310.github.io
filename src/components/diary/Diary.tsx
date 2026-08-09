@@ -57,6 +57,27 @@ const [isOpen, setIsOpen] = useState(false);
         hover:shadow-[0_50px_120px_rgba(0,0,0,0.8)]
       "
     >
+      {/* Diary ambient glow */}
+<motion.div
+  className="
+    absolute
+    -inset-8
+    rounded-[20px]
+    bg-[#d6b477]/10
+    blur-[35px]
+    pointer-events-none
+    -z-20
+  "
+  animate={{
+    opacity: [0.25, 0.4, 0.25],
+    scale: [1, 1.03, 1],
+  }}
+  transition={{
+    duration: 4,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+/>
       <div
   className="
     absolute
@@ -67,9 +88,11 @@ const [isOpen, setIsOpen] = useState(false);
 />
 <BackCover />
 
-<PageBlock />
 
-<DiaryInside isOpen={isOpen} />
+
+<DiaryInside
+  isOpen={isOpen}
+/>
 
 <div
   className="
@@ -80,6 +103,25 @@ const [isOpen, setIsOpen] = useState(false);
     pointer-events-none
   "
 />
+<motion.div
+  initial={{
+    opacity: 0,
+  }}
+  animate={{
+    opacity: isOpen ? 1 : 0,
+  }}
+  transition={{
+    delay: isOpen ? 0.45 : 0,
+    duration: 0.7,
+  }}
+  className="
+    absolute
+    inset-0
+    pointer-events-none
+  "
+>
+  <PageBlock />
+</motion.div>
 
 <FrontCover
   isOpen={isOpen}
