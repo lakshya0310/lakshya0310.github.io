@@ -1,75 +1,55 @@
-# React + TypeScript + Vite
+# 🪶 Lakshya Jindal — The Diary
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> A Harry Potter-inspired interactive portfolio built around the idea of Tom Riddle's Diary.
 
-Currently, two official plugins are available:
+🌐 **Live Website:** [lakshya0310.github.io](https://lakshya0310.github.io/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## ✨ About
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This is my personal portfolio redesigned as an interactive magical diary.
 
-## Expanding the ESLint configuration
+Instead of navigating through a conventional portfolio, visitors interact with the diary through a command-line interface embedded directly into the parchment pages.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+The experience starts with an old leather diary and gradually reveals my profile, projects, research, skills, experience, and resumes through an interactive terminal inspired by the writing and atmosphere of Tom Riddle's Diary.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+The background is inspired by the **Marauder's Map**, with animated parchment movement, ambient lighting, candles, dust, and other subtle effects to create the feeling of a magical artifact rather than a traditional website.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🪄 Features
 
-```
+- 📖 Interactive Tom Riddle's Diary-inspired interface
+- 🧭 Marauder's Map-inspired animated background
+- ✒️ Animated ink-writing effect
+- 📜 Parchment pages with page-turn animations
+- 💻 Interactive command-line interface
+- 🗂️ Interactive project browsing
+- 📄 Software / ML and Hardware / Electronics resume selection
+- 🔗 Clickable GitHub and LinkedIn links
+- 🕯️ Animated candle flames and ambient candlelight
+- ✨ Floating dust and atmospheric effects
+- 🪙 Brass diary corners and center seal
+- 🖱️ 3D mouse tilt interaction
+- 🎨 Leather texture and animated leather sheen
+- 📱 Responsive visual layout
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## ⌨️ CLI Commands
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Once the diary begins listening, try commands such as:
 
-```
+```text
+help
+about
+projects
+research
+skills
+experience
+achievements
+resume
+contact
+clear
+back
