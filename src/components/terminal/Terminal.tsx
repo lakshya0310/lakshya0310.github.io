@@ -32,35 +32,40 @@ export default function Terminal({
   const scrollRef = useRef<HTMLDivElement>(null);
   const projectDetailRef = useRef<HTMLDivElement>(null);
 
-  const [mode, setMode] =
-  useState<TerminalMode>("idle");
+  const [mode, setMode] = useState<TerminalMode>("idle");
 
-const [selectedProject, setSelectedProject] =
-  useState<number | null>(null);
-  
+  const [selectedProject, setSelectedProject] = useState<number | null>(null);
 
-  // Automatically scroll to the newest content
+  // Automatically scroll to the newest content AND manage focus
   useEffect(() => {
-  if (!scrollRef.current) {
-    return;
-  }
+    if (!scrollRef.current) {
+      return;
+    }
 
-  if (selectedProject !== null) {
-    setTimeout(() => {
-      projectDetailRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }, 100);
+    if (selectedProject !== null) {
+      setTimeout(() => {
+        projectDetailRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 100);
+      return;
+    }
 
-    return;
-  }
+    scrollRef.current.scrollTo({
+      top: scrollRef.current.scrollHeight,
+      behavior: "smooth",
+    });
 
-  scrollRef.current.scrollTo({
-    top: scrollRef.current.scrollHeight,
-    behavior: "smooth",
-  });
-}, [history, mode, selectedProject]);
+    // Force focus back to the input after a command is entered or scroll triggers
+    if (isActive) {
+      const input = document.querySelector('input[aria-label="Diary command"]') as HTMLInputElement;
+      if (input && document.activeElement !== input) {
+        input.focus();
+      }
+    }
+  }, [history, mode, selectedProject, isActive]);
+
   // Select a project
   const handleProjectSelect = (id: number) => {
     setSelectedProject(id);
@@ -72,213 +77,220 @@ const [selectedProject, setSelectedProject] =
     setSelectedProject(null);
     setMode("projects");
   };
-  const handleResumeSelect = (
-  type: "software" | "hardware"
-) => {
-  const resumeUrl =
-    type === "software"
-      ? softwareResume
-      : hardwareResume;
 
-  window.open(
-    resumeUrl,
-    "_blank",
-    "noopener,noreferrer"
-  );
-};
+  const handleResumeSelect = (type: "software" | "hardware") => {
+    const resumeUrl =
+      type === "software"
+        ? softwareResume
+        : hardwareResume;
+
+    window.open(
+      resumeUrl,
+      "_blank",
+      "noopener,noreferrer"
+    );
+  };
+
   // Handle commands typed into the diary
-const handleCommand = (command: string) => {
-  const normalizedCommand = command.trim().toLowerCase();
+  const handleCommand = (command: string) => {
+    const normalizedCommand = command.trim().toLowerCase();
 
-  if (normalizedCommand === "clear") {
-  setHistory([]);
-  setSelectedProject(null);
-  setMode("idle");
+    if (normalizedCommand === "clear") {
+      setHistory([]);
+      setSelectedProject(null);
+      setMode("idle");
+      return;
+    }
 
-  return;
-}
-
-  // Open project selector
- if (normalizedCommand === "projects") {
-  setMode("projects");
-  setSelectedProject(null);
-
-  setHistory((previous) => [
-    ...previous,
-    {
-      command,
-      lines: [
-        "The ink begins to move...",
-        "",
-        "The diary remembers eight creations.",
-        "",
-        "Choose a memory by entering its number.",
-      ],
-    },
-  ]);
-
-  return;
-}
-
-  if (normalizedCommand === "resume") {
-  setMode("resume");
-  setSelectedProject(null);
-
-  setHistory((previous) => [
-    ...previous,
-    {
-      command,
-      lines: [
-        "The diary knows you seek his complete record...",
-      ],
-    },
-  ]);
-
-  return;
-}
-
-  if (mode === "resume") {
-  if (normalizedCommand === "1") {
-    handleResumeSelect("software");
-
-    setHistory((previous) => [
-      ...previous,
-      {
-        command,
-        lines: [
-          "Opening the software record...",
-        ],
-      },
-    ]);
-
-    return;
-  }
-
-  if (normalizedCommand === "2") {
-    handleResumeSelect("hardware");
-
-    setHistory((previous) => [
-      ...previous,
-      {
-        command,
-        lines: [
-          "Opening the hardware record...",
-        ],
-      },
-    ]);
-
-    return;
-  }
-
-  if (/^\d+$/.test(normalizedCommand)) {
-    setHistory((previous) => [
-      ...previous,
-      {
-        command,
-        lines: [
-          "The diary contains only two records.",
-          "",
-          "Choose 1 for Software / ML.",
-          "Choose 2 for Hardware / Electronics.",
-        ],
-      },
-    ]);
-
-    return;
-  }
-}
-  // If project selector is open, allow numbers 1-8
- if (mode === "projects") {
-  if (/^\d+$/.test(normalizedCommand)) {
-    const projectId = Number(normalizedCommand);
-
-    if (projectId >= 1 && projectId <= 8) {
-      setSelectedProject(projectId);
-      setMode("project-detail");
+    // Open project selector
+    if (normalizedCommand === "projects") {
+      setMode("projects");
+      setSelectedProject(null);
 
       setHistory((previous) => [
         ...previous,
         {
           command,
           lines: [
-            `Memory ${projectId} opened.`,
+            "The ink begins to move...",
+            "",
+            "The diary remembers eight creations.",
+            "",
+            "Choose a memory by entering its number.",
           ],
         },
       ]);
-
       return;
     }
+
+    if (normalizedCommand === "resume") {
+      setMode("resume");
+      setSelectedProject(null);
+
+      setHistory((previous) => [
+        ...previous,
+        {
+          command,
+          lines: [
+            "The diary knows you seek his complete record...",
+          ],
+        },
+      ]);
+      return;
+    }
+
+    if (mode === "resume") {
+      if (normalizedCommand === "1") {
+        handleResumeSelect("software");
+
+        setHistory((previous) => [
+          ...previous,
+          {
+            command,
+            lines: [
+              "Opening the software record...",
+            ],
+          },
+        ]);
+        return;
+      }
+
+      if (normalizedCommand === "2") {
+        handleResumeSelect("hardware");
+
+        setHistory((previous) => [
+          ...previous,
+          {
+            command,
+            lines: [
+              "Opening the hardware record...",
+            ],
+          },
+        ]);
+        return;
+      }
+
+      if (/^\d+$/.test(normalizedCommand)) {
+        setHistory((previous) => [
+          ...previous,
+          {
+            command,
+            lines: [
+              "The diary contains only two records.",
+              "",
+              "Choose 1 for Software / ML.",
+              "Choose 2 for Hardware / Electronics.",
+            ],
+          },
+        ]);
+        return;
+      }
+    }
+
+    // If project selector is open, allow numbers 1-8
+    if (mode === "projects") {
+      if (/^\d+$/.test(normalizedCommand)) {
+        const projectId = Number(normalizedCommand);
+
+        if (projectId >= 1 && projectId <= 8) {
+          setSelectedProject(projectId);
+          setMode("project-detail");
+
+          setHistory((previous) => [
+            ...previous,
+            {
+              command,
+              lines: [
+                `Memory ${projectId} opened.`,
+              ],
+            },
+          ]);
+          return;
+        }
+
+        setHistory((previous) => [
+          ...previous,
+          {
+            command,
+            lines: [
+              "The diary contains no memory with that number.",
+              "",
+              "Choose a number between 1 and 8.",
+            ],
+          },
+        ]);
+        return;
+      }
+    }
+
+    // Return from a project detail
+    if (normalizedCommand === "back") {
+      if (mode === "project-detail") {
+        setSelectedProject(null);
+        setMode("projects");
+        return;
+      }
+
+      if (mode === "projects" || mode === "resume") {
+        setSelectedProject(null);
+        setMode("idle");
+        return;
+      }
+    } 
+    
+    // Normal commands
+    const response = commands[normalizedCommand];
+
+    const lines = response
+      ? response.lines
+      : [
+          "The ink hesitates...",
+          "",
+          `"${command}"`,
+          "",
+          "No such memory exists within these pages.",
+          "",
+          "Perhaps you should ask something else.",
+          "",
+          "Try 'help' if you have forgotten what I remember.",
+        ];
 
     setHistory((previous) => [
       ...previous,
       {
         command,
-        lines: [
-          "The diary contains no memory with that number.",
-          "",
-          "Choose a number between 1 and 8.",
-        ],
+        lines,
       },
     ]);
+  };
 
-    return;
-  }
-}
-// Return from a project detail
-if (normalizedCommand === "back") {
-  if (mode === "project-detail") {
-    setSelectedProject(null);
-    setMode("projects");
-    return;
-  }
-
-  if (mode === "projects" || mode === "resume") {
-    setSelectedProject(null);
-    setMode("idle");
-    return;
-  }
-}  // Normal commands
-  const response = commands[normalizedCommand];
-
-  const lines = response
-    ? response.lines
-    : [
-        "The ink hesitates...",
-        "",
-        `"${command}"`,
-        "",
-        "No such memory exists within these pages.",
-        "",
-        "Perhaps you should ask something else.",
-        "",
-        "Try 'help' if you have forgotten what I remember.",
-      ];
-
-  setHistory((previous) => [
-    ...previous,
-    {
-      command,
-      lines,
-    },
-  ]);
-};
+  // Clicking anywhere in the terminal re-focuses the hidden input
+  const handleTerminalClick = () => {
+    if (isActive) {
+      const input = document.querySelector('input[aria-label="Diary command"]') as HTMLInputElement;
+      if (input) {
+        input.focus();
+      }
+    }
+  };
 
   return (
     <div className="mt-8">
       <div
-  ref={scrollRef}
-  className="
-    max-h-[520px]
-    overflow-y-auto
-    overflow-x-hidden
-    pr-2
-    scroll-smooth
-    overscroll-contain
-  "
-  style={{
-    scrollbarWidth: "thin",
-    scrollbarColor: "rgba(74,50,27,0.45) transparent",
-  }}
+        ref={scrollRef}
+        onClick={handleTerminalClick}
+        className="
+          max-h-[520px]
+          overflow-y-auto
+          overflow-x-hidden
+          pr-2
+          scroll-smooth
+          overscroll-contain
+        "
+        style={{
+          scrollbarWidth: "thin",
+          scrollbarColor: "rgba(74,50,27,0.45) transparent",
+        }}
       >
         {/* Previous commands and responses */}
         {history.map((entry, index) => (
@@ -302,26 +314,26 @@ if (normalizedCommand === "back") {
 
         {/* Project selector */}
         {mode === "projects" && (
-  <ProjectSelector
-    onSelect={handleProjectSelect}
-  />
-)}
+          <ProjectSelector
+            onSelect={handleProjectSelect}
+          />
+        )}
 
-{mode === "project-detail" &&
-  selectedProject !== null && (
-    <div ref={projectDetailRef}>
-      <ProjectDetail
-        projectId={selectedProject}
-        onBack={handleProjectBack}
-      />
-    </div>
-  )}
+        {mode === "project-detail" &&
+          selectedProject !== null && (
+            <div ref={projectDetailRef}>
+              <ProjectDetail
+                projectId={selectedProject}
+                onBack={handleProjectBack}
+              />
+            </div>
+          )}
 
-{mode === "resume" && (
-  <ResumeSelector
-    onSelect={handleResumeSelect}
-  />
-)}
+        {mode === "resume" && (
+          <ResumeSelector
+            onSelect={handleResumeSelect}
+          />
+        )}
 
         {/* Command input */}
         <TerminalInput
