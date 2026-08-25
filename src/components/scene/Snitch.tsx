@@ -16,7 +16,7 @@ export default function Snitch({
     duration: 0.04,
     repeat: Infinity,
     repeatType: "mirror" as const,
-    ease: "linear",
+    ease: "linear" as const, // Added 'as const' here
   };
 
   return (
@@ -32,7 +32,7 @@ export default function Snitch({
         duration: 5,
         delay,
         repeat: Infinity,
-        ease: "easeInOut",
+        ease: "easeInOut" as const, // Added 'as const' here
       }}
     >
       {/* Left Wing */}
