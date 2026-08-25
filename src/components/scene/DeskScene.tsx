@@ -4,6 +4,7 @@ import Candle from "./Candle";
 import maraudersMap from "../../assets/textures/marauders-map.jpg";
 import DustParticles from "./DustParticles";
 import Candlelight from "./Candlelight";
+import Snitch from "./Snitch";
 
 export default function DeskScene() {
   return (
@@ -233,6 +234,18 @@ export default function DeskScene() {
 <Candle position="left-[8%] bottom-[10%]" />
 {/* Second candle */}
 <Candle position="right-[8%] bottom-[14%]" />
+{/* Flying Snitches */}
+<Snitch
+  position="top-[12%] left-[12%]"
+  delay={0}
+  scale={0.9}
+/>
+
+<Snitch
+  position="top-[14%] right-[12%]"
+  delay={2.2}
+  scale={0.9}
+/>
 
 {/* Diary */}
       <div

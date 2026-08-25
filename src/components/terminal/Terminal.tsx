@@ -266,16 +266,19 @@ if (normalizedCommand === "back") {
   return (
     <div className="mt-8">
       <div
-        ref={scrollRef}
-        className="
-          max-h-[470px]
-          overflow-y-auto
-          pr-2
-          scroll-smooth
-        "
-        style={{
-          scrollbarWidth: "none",
-        }}
+  ref={scrollRef}
+  className="
+    max-h-[520px]
+    overflow-y-auto
+    overflow-x-hidden
+    pr-2
+    scroll-smooth
+    overscroll-contain
+  "
+  style={{
+    scrollbarWidth: "thin",
+    scrollbarColor: "rgba(74,50,27,0.45) transparent",
+  }}
       >
         {/* Previous commands and responses */}
         {history.map((entry, index) => (
