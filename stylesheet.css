@@ -63,17 +63,7 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-a {
-  color: #1772d0;
-  text-decoration: none;
-}
-
-a:focus,
-a:hover {
-  color: #f09228;
-  text-decoration: none;
-}
-
+/* Dark Theme Body & Text */
 body,
 td,
 th,
@@ -82,11 +72,31 @@ p,
 a {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 14px;
+  color: #c9d1d9;
+}
+
+body {
+  background-color: #0d1117;
+  color: #c9d1d9;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #58a6ff;
+  text-decoration: none;
+}
+
+a:focus,
+a:hover {
+  color: #f0883e;
+  text-decoration: none;
 }
 
 strong {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 14px;
+  color: #f0f6fc;
 }
 
 h2 {
@@ -94,12 +104,16 @@ h2 {
   font-weight: normal;
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 22px;
+  color: #f0f6fc;
+  border-bottom: 1px solid #30363d;
+  padding-bottom: 6px;
 }
 
 .papertitle {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 14px;
   font-weight: 700;
+  color: #f0f6fc;
 }
 
 .name {
@@ -107,6 +121,8 @@ h2 {
   margin: 0;
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 32px;
+  color: #f0f6fc;
+  font-weight: bold;
 }
 
 .one {
@@ -131,11 +147,14 @@ h2 {
 }
 
 span.highlight {
-  background-color: #ffffd0;
+  background-color: #382d0c;
+  color: #ffcc00;
+  padding: 1px 5px;
+  border-radius: 3px;
 }
 
 .colored-box {
-  color: black;
+  color: #c9d1d9;
   padding: 20px;
   display: inline-block;
   border-radius: 10px;
@@ -151,10 +170,10 @@ span.highlight {
   display: inline-block;
   padding: 5px 12px;
   margin: 0 6px 6px 0;
-  border: 1px solid #d0d7de;
+  border: 1px solid #30363d;
   border-radius: 16px;
-  background-color: #f6f8fa;
-  color: #24292f;
+  background-color: #21262d;
+  color: #c9d1d9;
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 13px;
   cursor: pointer;
@@ -162,21 +181,22 @@ span.highlight {
 }
 
 .filter-btn:hover {
-  border-color: #1772d0;
-  color: #1772d0;
+  border-color: #58a6ff;
+  color: #58a6ff;
 }
 
 .filter-btn.active {
-  background-color: #1772d0;
-  border-color: #1772d0;
+  background-color: #1f6feb;
+  border-color: #1f6feb;
   color: #ffffff;
   font-weight: 700;
 }
 
 .tech-tag {
   display: inline-block;
-  background-color: #eef4fb;
-  color: #1772d0;
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  color: #58a6ff;
   padding: 1px 7px;
   border-radius: 4px;
   font-size: 12px;
@@ -189,62 +209,66 @@ span.highlight {
   height: 120px;
   border-radius: 6px;
   object-fit: cover;
-  border: 1px solid #eaecef;
-}
-
-/* Skills & Achievements Highlight Cards */
-.skill-card {
-  background-color: #f8fafd;
-  border: 1px solid #e1e8f0;
-  border-left: 4px solid #1772d0;
-  border-radius: 6px;
-  padding: 12px 16px;
-  margin-bottom: 10px;
-}
-
-.skill-card-title {
-  font-weight: 700;
-  color: #111;
-  margin-bottom: 6px;
+  border: 1px solid #30363d;
   display: block;
 }
 
-.skill-pill {
+/* Reference-style Left Label Rows for Skills & Achievements */
+.category-row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+
+.category-badge-col {
+  width: 140px;
+  flex-shrink: 0;
+  padding-right: 16px;
+}
+
+.category-badge {
   display: inline-block;
-  background-color: #ffffff;
-  border: 1px solid #d0d7de;
-  color: #24292f;
-  padding: 2px 9px;
-  border-radius: 12px;
-  font-size: 12.5px;
-  margin: 2px 4px 2px 0;
-}
-
-.achievement-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-.achievement-card {
-  background-color: #fffef2;
-  border: 1px solid #f0e6b6;
-  border-left: 4px solid #f09228;
+  background-color: #2b3137;
+  color: #f0f6fc;
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 8px 16px;
   border-radius: 6px;
-  padding: 10px 14px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  text-align: center;
+  width: 100px;
+  border: 1px solid #444c56;
 }
 
-.achievement-badge {
-  background-color: #f09228;
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 12px;
-  padding: 3px 10px;
-  border-radius: 12px;
-  white-space: nowrap;
-  margin-left: 12px;
+.category-badge.gold {
+  background-color: #3b2e16;
+  border-color: #9e6a03;
+  color: #f0b741;
+}
+
+.category-badge.green {
+  background-color: #113822;
+  border-color: #2ea043;
+  color: #55d475;
+}
+
+.category-badge.purple {
+  background-color: #2b1d3d;
+  border-color: #8957e5;
+  color: #d2a8ff;
+}
+
+.category-content-col {
+  flex-grow: 1;
+}
+
+.category-content-col ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.category-content-col li {
+  margin-bottom: 6px;
+  line-height: 1.45;
+  color: #c9d1d9;
 }
