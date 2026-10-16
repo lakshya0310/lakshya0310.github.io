@@ -191,3 +191,60 @@ span.highlight {
   object-fit: cover;
   border: 1px solid #eaecef;
 }
+
+/* Skills & Achievements Highlight Cards */
+.skill-card {
+  background-color: #f8fafd;
+  border: 1px solid #e1e8f0;
+  border-left: 4px solid #1772d0;
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+}
+
+.skill-card-title {
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.skill-pill {
+  display: inline-block;
+  background-color: #ffffff;
+  border: 1px solid #d0d7de;
+  color: #24292f;
+  padding: 2px 9px;
+  border-radius: 12px;
+  font-size: 12.5px;
+  margin: 2px 4px 2px 0;
+}
+
+.achievement-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.achievement-card {
+  background-color: #fffef2;
+  border: 1px solid #f0e6b6;
+  border-left: 4px solid #f09228;
+  border-radius: 6px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.achievement-badge {
+  background-color: #f09228;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  white-space: nowrap;
+  margin-left: 12px;
+}
