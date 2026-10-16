@@ -135,8 +135,59 @@ span.highlight {
 }
 
 .colored-box {
-    color: black;
-    padding: 20px;
-    display: inline-block;
-    border-radius: 10px;
+  color: black;
+  padding: 20px;
+  display: inline-block;
+  border-radius: 10px;
+}
+
+/* Category Filter Bar & Project Badges */
+.filter-bar {
+  margin-top: 10px;
+  margin-bottom: 6px;
+}
+
+.filter-btn {
+  display: inline-block;
+  padding: 5px 12px;
+  margin: 0 6px 6px 0;
+  border: 1px solid #d0d7de;
+  border-radius: 16px;
+  background-color: #f6f8fa;
+  color: #24292f;
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.filter-btn:hover {
+  border-color: #1772d0;
+  color: #1772d0;
+}
+
+.filter-btn.active {
+  background-color: #1772d0;
+  border-color: #1772d0;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.tech-tag {
+  display: inline-block;
+  background-color: #eef4fb;
+  color: #1772d0;
+  padding: 1px 7px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin-right: 4px;
+  margin-top: 3px;
+}
+
+.thumb-box {
+  width: 160px;
+  height: 120px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid #eaecef;
 }
